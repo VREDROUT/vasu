@@ -1,25 +1,40 @@
-import logo from './logo.svg';
+import { Component } from "react";
+import { store } from "./store"
+import {   Route, Routes } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import { Provider } from "react-redux";
+
+import Patient from "./components/Patient";
+import Doctor from "./components/patient-components/doctor";
+
 import './App.css';
+import NavBar from "./components/Navbar";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component{
+
+  /* Which function does react call : render() */
+  render(){  /* render must return something(JSX) */
+    return(
+        <div>
+          <Provider store={store}> 
+          <NavBar />
+          
+          <Routes>
+            <Route path="/patient" element={ <Patient />} /> 
+            
+            {/* <Route path="/doctor" element={ <Doctor />} /> 
+            
+           <Route path="/addPatient" element={ <addPatient />} />  */}
+
+            {/* <Route path="/posts" element={ <Post />} /> 
+            <Route path="/patient" element={ <Patient />} /> 
+            <Route path="/sign-up" element={ <SignUp />} /> 
+            <Route path="/users" element={ <User />} /> 
+            <Route path="*" element={ <PageNotFound />} /> */}
+          </Routes>
+          </Provider>
+        </div>
+    );
+  }
 }
-
-export default App;
